@@ -20,7 +20,7 @@
 
 #include <vector>
 #include <memory>
-#include <aasdk_proto/ServiceDiscoveryResponseMessage.pb.h>
+#include <../aasdk_proto/ServiceDiscoveryResponseMessage.pb.h>
 
 namespace f1x
 {

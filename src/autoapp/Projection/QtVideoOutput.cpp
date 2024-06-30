@@ -17,6 +17,7 @@
 */
 
 #include <QApplication>
+#include <QLabel>
 #include <f1x/openauto/autoapp/Projection/QtVideoOutput.hpp>
 #include <f1x/openauto/Common/Log.hpp>
 
@@ -43,6 +44,8 @@ void QtVideoOutput::createVideoOutput()
     OPENAUTO_LOG(debug) << "[QtVideoOutput] create.";
     videoWidget_ = std::make_unique<QVideoWidget>();
     mediaPlayer_ = std::make_unique<QMediaPlayer>(nullptr, QMediaPlayer::StreamPlayback);
+    widget_ = std::make_unique<QWidget>();
+    textLabel_ = std::make_unique<QLabel>("", nullptr);
 }
 
 
@@ -69,11 +72,58 @@ void QtVideoOutput::write(uint64_t, const aasdk::common::DataConstBuffer& buffer
 
 void QtVideoOutput::onStartPlayback()
 {
+    widget_->showFullScreen();
+    widget_->setFixedSize(1920, 1080);
+    widget_->adjustSize();
+
+    QPalette palette;
+    palette.setBrush(widget_->backgroundRole(), QBrush(QPixmap("./bg.png")));
+    widget_->setPalette(palette);
+    widget_->setAutoFillBackground(true);
+
+    videoWidget_->setFixedWidth(1920);
+    videoWidget_->setFixedHeight(750);
+
+    QVBoxLayout *mainLayout = new QVBoxLayout();
+
+    textLabel_->setText("12:34");
+    QFont f( "Arial", 50, QFont::Bold);
+    textLabel_->setFont(f);
+    QPalette sample_palette;
+    sample_palette.setColor(QPalette::Window, Qt::transparent);
+    sample_palette.setColor(QPalette::WindowText, Qt::white);
+
+    textLabel_->setAutoFillBackground(true);
+    textLabel_->setPalette(sample_palette);
+
+    QHBoxLayout *textLayout = new QHBoxLayout();
+    textLayout->addStretch();  // Add stretchable space before the label
+    textLayout->addWidget(textLabel_.get());
+    textLayout->addStretch();  // Add stretchable space after the label
+
+    // Add the horizontal layout for the text label to the main layout
+    mainLayout->addLayout(textLayout);
+
+    // Add a spacer item to take up the space between the text label and the video widget
+    mainLayout->addSpacerItem(new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding));
+
+    // Create a horizontal layout to center the video widget
+    QHBoxLayout *videoLayout = new QHBoxLayout();
+    videoLayout->addStretch();  // Add stretchable space before the widget
+    videoLayout->addWidget(videoWidget_.get());
+    videoLayout->addStretch();  // Add stretchable space after the widget
+
+    // Add the horizontal layout for the video widget to the main layout
+    mainLayout->addLayout(videoLayout);
+    widget_->setLayout(mainLayout);
     videoWidget_->setAspectRatioMode(Qt::IgnoreAspectRatio);
     videoWidget_->setFocus();
     //videoWidget_->setWindowFlags(Qt::WindowStaysOnTopHint);
-    videoWidget_->setFullScreen(true);
-    videoWidget_->show();
+    //videoWidget_->setFullScreen(true);
+    //videoWidget_->setWindowFlags(Qt::FramelessWindowHint);
+    //videoWidget_->setGeometry(75, 550, 1720, 550);
+    //videoWidget_->show();
+
 
     mediaPlayer_->setVideoOutput(videoWidget_.get());
     mediaPlayer_->setMedia(QMediaContent(), &videoBuffer_);

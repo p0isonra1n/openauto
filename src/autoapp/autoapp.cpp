@@ -129,7 +129,7 @@ int main(int argc, char* argv[])
     QObject::connect(&mainWindow, &autoapp::ui::MainWindow::openUpdateDialog, &updatedialog, &autoapp::ui::UpdateDialog::updateCheck);
     QObject::connect(&mainWindow, &autoapp::ui::MainWindow::openUpdateDialog, &updatedialog, &autoapp::ui::UpdateDialog::exec);
 
-    if (configuration->showCursor() == false) {
+    if (configuration->showCursor() != false) {
         qApplication.setOverrideCursor(Qt::BlankCursor);
     } else {
         qApplication.setOverrideCursor(Qt::ArrowCursor);

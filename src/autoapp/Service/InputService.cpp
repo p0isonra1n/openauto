@@ -16,7 +16,7 @@
 *  along with openauto. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <aasdk_proto/InputEventIndicationMessage.pb.h>
+#include <../aasdk_proto/InputEventIndicationMessage.pb.h>
 #include <f1x/openauto/Common/Log.hpp>
 #include <f1x/openauto/autoapp/Service/InputService.hpp>
 

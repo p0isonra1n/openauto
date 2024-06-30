@@ -20,8 +20,8 @@
 
 #include <memory>
 #include <QRect>
-#include <aasdk_proto/VideoFPSEnum.pb.h>
-#include <aasdk_proto/VideoResolutionEnum.pb.h>
+#include <../aasdk_proto/VideoFPSEnum.pb.h>
+#include <../aasdk_proto/VideoResolutionEnum.pb.h>
 #include <aasdk/Common/Data.hpp>
 
 namespace f1x

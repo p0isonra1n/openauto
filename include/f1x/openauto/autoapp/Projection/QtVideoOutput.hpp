@@ -18,8 +18,10 @@
 
 #pragma once
 
+#include <qboxlayout.h>
 #include <QMediaPlayer>
 #include <QVideoWidget>
+#include <QLabel>
 #include <boost/noncopyable.hpp>
 #include <f1x/openauto/autoapp/Projection/VideoOutput.hpp>
 #include <f1x/openauto/autoapp/Projection/SequentialBuffer.hpp>
@@ -57,6 +59,8 @@ private:
     SequentialBuffer videoBuffer_;
     std::unique_ptr<QVideoWidget> videoWidget_;
     std::unique_ptr<QMediaPlayer> mediaPlayer_;
+    std::unique_ptr<QWidget> widget_;
+    std::unique_ptr<QLabel> textLabel_;
 };
 
 }

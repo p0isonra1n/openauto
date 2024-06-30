@@ -24,9 +24,9 @@
 #include <QtCore/QDataStream>
 #include <QNetworkInterface>
 
-#include <aasdk_proto/WifiInfoRequestMessage.pb.h>
-#include <aasdk_proto/WifiInfoResponseMessage.pb.h>
-#include <aasdk_proto/WifiSecurityResponseMessage.pb.h>
+#include <../aasdk_proto/WifiInfoRequestMessage.pb.h>
+#include <../aasdk_proto/WifiInfoResponseMessage.pb.h>
+#include <../aasdk_proto/WifiSecurityResponseMessage.pb.h>
 
 namespace f1x {
     namespace openauto {

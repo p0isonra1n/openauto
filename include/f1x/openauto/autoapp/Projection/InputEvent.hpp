@@ -18,8 +18,8 @@
 
 #pragma once
 
-#include <aasdk_proto/ButtonCodeEnum.pb.h>
-#include <aasdk_proto/TouchActionEnum.pb.h>
+#include <../aasdk_proto/ButtonCodeEnum.pb.h>
+#include <../aasdk_proto/TouchActionEnum.pb.h>
 #include <aasdk/IO/Promise.hpp>
 
 namespace f1x
