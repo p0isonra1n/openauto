@@ -85,6 +85,7 @@ void QtVideoOutput::onStartPlayback()
     videoWidget_->setFixedHeight(750);
 
     QVBoxLayout *mainLayout = new QVBoxLayout();
+    mainLayout->setContentsMargins(0, 0, 0, 0);
 
     textLabel_->setText("12:34");
     QFont f( "Arial", 50, QFont::Bold);
@@ -97,6 +98,7 @@ void QtVideoOutput::onStartPlayback()
     textLabel_->setPalette(sample_palette);
 
     QHBoxLayout *textLayout = new QHBoxLayout();
+    textLayout->setContentsMargins(0, 0, 0, 0);
     textLayout->addStretch();  // Add stretchable space before the label
     textLayout->addWidget(textLabel_.get());
     textLayout->addStretch();  // Add stretchable space after the label
@@ -112,6 +114,8 @@ void QtVideoOutput::onStartPlayback()
     videoLayout->addStretch();  // Add stretchable space before the widget
     videoLayout->addWidget(videoWidget_.get());
     videoLayout->addStretch();  // Add stretchable space after the widget
+
+    videoLayout->setContentsMargins(0, 0, 0, 0);
 
     // Add the horizontal layout for the video widget to the main layout
     mainLayout->addLayout(videoLayout);
