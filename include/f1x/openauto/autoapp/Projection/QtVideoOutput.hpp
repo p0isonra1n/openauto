@@ -22,6 +22,7 @@
 #include <QMediaPlayer>
 #include <QVideoWidget>
 #include <QLabel>
+#include <QSocketNotifier>
 #include <boost/noncopyable.hpp>
 #include <f1x/openauto/autoapp/Projection/VideoOutput.hpp>
 #include <f1x/openauto/autoapp/Projection/SequentialBuffer.hpp>
@@ -53,6 +54,9 @@ signals:
 protected slots:
     void createVideoOutput();
     void onStartPlayback();
+
+    void readCANData();
+
     void onStopPlayback();
 
 private:
@@ -61,6 +65,8 @@ private:
     std::unique_ptr<QMediaPlayer> mediaPlayer_;
     std::unique_ptr<QWidget> widget_;
     std::unique_ptr<QLabel> textLabel_;
+    int sock;
+    QSocketNotifier *notifier;
 };
 
 }

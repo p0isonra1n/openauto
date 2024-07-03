@@ -18,8 +18,21 @@
 
 #include <QApplication>
 #include <QLabel>
+#include <qsocketnotifier.h>
 #include <f1x/openauto/autoapp/Projection/QtVideoOutput.hpp>
 #include <f1x/openauto/Common/Log.hpp>
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+
+#include <net/if.h>
+#include <sys/ioctl.h>
+#include <sys/socket.h>
+
+#include <linux/can.h>
+#include <linux/can/raw.h>
 
 namespace f1x
 {
@@ -134,6 +147,7 @@ void QtVideoOutput::onStartPlayback()
     mediaPlayer_->play();
     OPENAUTO_LOG(debug) << "Player error state -> " << mediaPlayer_->errorString().toStdString();
 }
+
 
 void QtVideoOutput::onStopPlayback()
 {
