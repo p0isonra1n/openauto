@@ -80,7 +80,19 @@ add_executable(autoapp ${autoapp_source_files})
 include_directories("../aasdk/include"
         "../aasdk/aasdk_proto")
 
+find_library(AASDK_LIBRARIES NAMES aasdk PATHS "/home/isaac/CLionProjects/aasdk/lib")
 
+# Check if the library was found
+if(NOT AASDK_LIBRARIES)
+    message(FATAL_ERROR "aasdk library not found")
+endif()
+
+find_library(AASDK_PROTO_LIBRARIES NAMES aasdk_proto PATHS "/home/isaac/CLionProjects/aasdk/lib")
+
+# Check if the library was found
+if(NOT AASDK_PROTO_LIBRARIES)
+    message(FATAL_ERROR "aasdk proto library not found")
+endif()
 
 target_link_libraries(autoapp libusb
                         ${Boost_LIBRARIES}
